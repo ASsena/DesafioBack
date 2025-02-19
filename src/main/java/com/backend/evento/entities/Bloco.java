@@ -3,6 +3,8 @@ package com.backend.evento.entities;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_bloco")
@@ -16,9 +18,6 @@ public class Bloco {
     private Instant inicio;
     @Column(name = "fim")
     private Instant fim;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Atividade atividade;
 
     public Bloco(Integer id, Instant inicio, Instant fim) {
         this.id = id;
@@ -53,11 +52,5 @@ public class Bloco {
         this.id = id;
     }
 
-    public Atividade getAtividade() {
-        return atividade;
-    }
 
-    public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
-    }
 }

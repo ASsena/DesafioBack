@@ -3,6 +3,7 @@ package com.backend.evento.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_atividade")
@@ -20,10 +21,16 @@ public class Atividade {
     private Double preco;
 
     @OneToMany
-    private List<Bloco> blocos;
+    private List<Bloco> bloco;
 
-    @ManyToOne
-    private Categoria categoria;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "atividade_participante",
+            joinColumns = @JoinColumn(name = "atividade_id"),
+            inverseJoinColumns = @JoinColumn(name = "participante_id")
+    )
+    private List<Participante> participantes;
 
 
     public Atividade(Integer id, String descricao, String nome, Double preco) {
@@ -68,19 +75,20 @@ public class Atividade {
         this.preco = preco;
     }
 
-    public List<Bloco> getBlocos() {
-        return blocos;
+    public List<Bloco> getBloco() {
+        return bloco;
     }
 
-    public void setBlocos(List<Bloco> blocos) {
-        this.blocos = blocos;
+    public void setBloco(List<Bloco> bloco) {
+        this.bloco = bloco;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+
+    public List<Participante> getParticipantes() {
+        return participantes;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setParticipantes(List<Participante> participantes) {
+        this.participantes = participantes;
     }
 }

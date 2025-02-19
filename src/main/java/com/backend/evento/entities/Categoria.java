@@ -3,6 +3,7 @@ package com.backend.evento.entities;
 import jakarta.persistence.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_categoria")
@@ -16,7 +17,7 @@ public class Categoria {
     private String descricao;
 
     @OneToMany
-    private List<Atividade> atividades;
+    private Set<Atividade> atividades;
 
     public Categoria(Integer id, String descricao) {
         this.id = id;
@@ -42,11 +43,11 @@ public class Categoria {
         this.descricao = descricao;
     }
 
-    public List<Atividade> getAtividades() {
+    public Set<Atividade> getAtividades() {
         return atividades;
     }
 
-    public void setAtividades(List<Atividade> atividades) {
+    public void setAtividades(Set<Atividade> atividades) {
         this.atividades = atividades;
     }
 }

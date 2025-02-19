@@ -2,6 +2,9 @@ package com.backend.evento.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name = "tb_participantes")
 public class Participante {
@@ -14,6 +17,9 @@ public class Participante {
     private String nome;
     @Column(name = "email")
     private String email;
+
+    @ManyToMany(mappedBy = "participantes")
+    private List<Atividade> atividades;
 
     public Participante() {
     }
@@ -46,5 +52,13 @@ public class Participante {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Atividade> getAtividades() {
+        return atividades;
+    }
+
+    public void setAtividades(List<Atividade> atividades) {
+        this.atividades = atividades;
     }
 }
